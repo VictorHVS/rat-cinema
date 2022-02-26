@@ -1,10 +1,10 @@
 # rat-cinema 📽️
 An mobile application that consumes themoviedb api for study purposes.
 
-## Features
-[] - Movie List
-[] - Movie Detail
-[] - Movie Search
+## Features 🧩
+- [ ] Movie List
+- [ ] Movie Detail
+- [ ] Movie Search
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
@@ -13,14 +13,14 @@ An mobile application that consumes themoviedb api for study purposes.
 - [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation) - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 
-## API
-https://developers.themoviedb.org/3
+## API 🖥️
+Free and robust API: https://developers.themoviedb.org/3
 
 ## Design 🎨
 Inspiration from:
 https://www.uplabs.com/posts/netflix-app-ui-redesign
 
-## License
+## License 👮‍♂️
 ```
 Copyright 2022 The Android Open Source Project
 
