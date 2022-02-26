@@ -17,8 +17,9 @@ An mobile application that consumes themoviedb api for study purposes.
 https://developers.themoviedb.org/3
 
 ## Design 🎨
-Inspiration from:
-https://www.uplabs.com/posts/netflix-app-ui-redesign
+- Inspiration from: https://www.behance.net/gallery/124917609/NETFLIX-UXUI-Redesign/modules/709576847
+- Material Theme Builder: https://material-foundation.github.io/material-theme-builder/#/custom
+
 
 ## License
 ```
