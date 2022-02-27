@@ -60,7 +60,14 @@ dependencies {
     implementation Compose.activity
     implementation Compose.material
     implementation Compose.toolingPreview
+    implementation Compose.navigation
+    implementation Compose.paging
     debugImplementation Compose.tooling
+
+    implementation Room.runtime
+    kapt Room.compiler
+    implementation Room.ktx
+    implementation Room.paging
 
     testImplementation Junit.junit4
     androidTestImplementation AndroidXTest.runner

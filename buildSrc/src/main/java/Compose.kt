@@ -13,6 +13,9 @@ object Compose {
 
     private const val hiltNavigationComposeVersion = "1.0.0"
     const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
+
+    private const val pagingVersion = "1.0.0-alpha14"
+    const val paging = "androidx.paging:paging-compose:$pagingVersion"
 }
 
 object ComposeTest {
