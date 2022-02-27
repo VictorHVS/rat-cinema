@@ -1,15 +1,16 @@
-# rat-cinema 📽️
+# rat-cinema 🐀-📽️
 An mobile application that consumes themoviedb api for study purposes.
 
 ## TODOS ✅
 - [x] buildSrc
-- [ ] Room Setup
+- [x] Room Setup
 - [ ] Hilt Setup
 - [ ] Retrofit Setup
 - [ ] Home Screen
 - [ ] Movie Detail Screen
 - [ ] Movie Search Screen
 - [ ] Testing
+- [ ] Github Actions for CI/CD  
 - [ ] Modularization
 
 ## Built With 🛠
