@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 kapt {
@@ -62,12 +63,16 @@ dependencies {
     implementation Compose.toolingPreview
     implementation Compose.navigation
     implementation Compose.paging
+    implementation Compose.hiltNavigation
     debugImplementation Compose.tooling
 
     implementation Room.runtime
     kapt Room.compiler
     implementation Room.ktx
     implementation Room.paging
+
+    implementation Hilt.android
+    kapt Hilt.compiler
 
     testImplementation Junit.junit4
     androidTestImplementation AndroidXTest.runner
