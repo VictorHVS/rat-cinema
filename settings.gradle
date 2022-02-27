@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "RatCinema"
-include ':app'
+include(":app")
