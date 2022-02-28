@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.victorhvs.ratcinema.domain.Movie
+import com.victorhvs.ratcinema.domain.model.Movie
 
 @Dao
 interface MovieDao {
@@ -17,7 +17,7 @@ interface MovieDao {
     fun getSelectedMovie(movieId: Int): Movie
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovies(Movies: List<Movie>)
+    suspend fun addMovies(movies: List<Movie>)
 
     @Query("DELETE FROM movie_table")
     suspend fun deleteAllMovies()

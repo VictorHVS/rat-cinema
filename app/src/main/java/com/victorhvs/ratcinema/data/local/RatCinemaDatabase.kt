@@ -4,16 +4,17 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.victorhvs.ratcinema.data.local.dao.MovieDao
-import com.victorhvs.ratcinema.data.local.dao.MovieRemoteKeyDao
-import com.victorhvs.ratcinema.domain.Movie
-import com.victorhvs.ratcinema.domain.MovieRemoteKey
+import com.victorhvs.ratcinema.data.local.dao.MovieRemoteKeysDao
+import com.victorhvs.ratcinema.domain.model.Movie
+import com.victorhvs.ratcinema.domain.model.MovieRemoteKeys
 
 @Database(
-    entities =[Movie::class, MovieRemoteKey::class],
-    version = 1
+    entities =[Movie::class, MovieRemoteKeys::class],
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(DatabaseConverter::class)
 abstract class RatCinemaDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
-    abstract fun movieRemoteKeyDao(): MovieRemoteKeyDao
+    abstract fun movieRemoteKeysDao(): MovieRemoteKeysDao
 }

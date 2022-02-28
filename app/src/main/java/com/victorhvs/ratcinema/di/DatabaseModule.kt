@@ -2,6 +2,7 @@ package com.victorhvs.ratcinema.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.victorhvs.ratcinema.data.local.RatCinemaDatabase
 import com.victorhvs.ratcinema.util.Constants.RATCINEMA_DATABASE
 import dagger.Module
@@ -19,9 +20,13 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(
-        context,
-        RatCinemaDatabase::class.java,
-        RATCINEMA_DATABASE
-    )
+    ): RatCinemaDatabase {
+        return Room.databaseBuilder(
+            context,
+            RatCinemaDatabase::class.java,
+            RATCINEMA_DATABASE
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
 }
