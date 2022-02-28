@@ -1,15 +1,19 @@
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
         classpath Build.androidBuildTools
         classpath Build.kotlinGradlePlugin
         classpath Build.hiltAndroid
-        classpath "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
+        classpath Build.kotlinSerialization
     }
 }
 
 plugins {
-    id 'com.android.application' version '7.1.1' apply false
-    id 'com.android.library' version '7.1.1' apply false
+    id 'com.android.application' version '7.1.2' apply false
+    id 'com.android.library' version '7.1.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
 }
 

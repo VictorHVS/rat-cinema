@@ -1,9 +1,11 @@
-package com.victorhvs.ratcinema.domain
+package com.victorhvs.ratcinema.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.victorhvs.ratcinema.util.Constants.MOVIE_DATABASE_TABLE
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = MOVIE_DATABASE_TABLE)
 data class Movie(
     @PrimaryKey(autoGenerate = false)

@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 
 kapt {
@@ -24,6 +25,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", "TMDB_API_KEY", ApiKey.TMDB_API_KEY
     }
 
     buildTypes {
@@ -73,6 +76,11 @@ dependencies {
 
     implementation Hilt.android
     kapt Hilt.compiler
+
+    implementation Kotlinx.serialization
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.kotlinxSerialization
 
     testImplementation Junit.junit4
     androidTestImplementation AndroidXTest.runner
