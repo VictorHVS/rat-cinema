@@ -45,7 +45,7 @@ class MovieRemoteMediator @Inject constructor(
                 }
             }
 
-            val response = tmdbApi.getUpcomingMovies(page = page)
+            val response = tmdbApi.getPopularMovies(page = page)
             if (response.results.isNotEmpty()) {
                 ratCinemaDatabase.withTransaction {
                     if (loadType == LoadType.REFRESH) {

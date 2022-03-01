@@ -80,7 +80,12 @@ dependencies {
     implementation Kotlinx.serialization
 
     implementation Retrofit.retrofit
+    implementation Retrofit.okHttpLogging
     implementation Retrofit.kotlinxSerialization
+
+    implementation Coil.coil
+
+    implementation RatingBar.ratingBar
 
     testImplementation Junit.junit4
     androidTestImplementation AndroidXTest.runner

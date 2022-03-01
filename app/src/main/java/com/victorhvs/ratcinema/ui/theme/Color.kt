@@ -23,3 +23,6 @@ val md_theme_dark_background = Color(0xFF191c1d)
 val md_theme_dark_onBackground = Color(0xFFe0e3e3)
 val md_theme_dark_surface = Color(0xFF191c1d)
 val md_theme_dark_onSurface = Color(0xFFe0e3e3)
+
+val ratingBarActive = Color(0xFFFFC42E)
+val ratingBarInactive = Color(0xFF191c1d)

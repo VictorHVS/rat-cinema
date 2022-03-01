@@ -6,7 +6,7 @@ An mobile application that consumes themoviedb api for study purposes.
 - [x] Room Setup
 - [x] Hilt Setup
 - [x] Retrofit Setup
-- [x] Home Screen
+- [x] Home Screen with Movie List
 - [ ] Movie Detail Screen
 - [ ] Movie Search Screen
 - [ ] Testing

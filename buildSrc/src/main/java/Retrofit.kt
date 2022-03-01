@@ -4,4 +4,7 @@ object Retrofit {
 
     private const val retrofitSerializationVersion = "0.8.0"
     const val kotlinxSerialization = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$retrofitSerializationVersion"
+
+    private const val okHttpLogginVersion = "4.9.3"
+    const val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:$okHttpLogginVersion"
 }
