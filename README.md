@@ -34,7 +34,7 @@ You must provide a developer key to fetch the data from TMDB API.
 
 ```kotlin
 object ApiKey {
-    const val TMDB_API_KEY = "\"5f4223e51b4b4750375c89061d858db5\""
+    const val TMDB_API_KEY = "\"5f422***********************8db5\""
 }
 ```
 
