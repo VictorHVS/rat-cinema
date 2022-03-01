@@ -9,6 +9,8 @@ class DatabaseConverter {
 
     @TypeConverter
     fun convertListToString(list: List<Int>): String {
+        if (list.isEmpty()) return ""
+
         val stringBuilder = StringBuilder()
         for (item in list) {
             stringBuilder.append(item).append(separator)
@@ -20,6 +22,7 @@ class DatabaseConverter {
 
     @TypeConverter
     fun convertStringToList(string: String): List<Int> {
+        if (string.isEmpty()) return emptyList()
         return string.split(separator).map { it.toInt() }
     }
 }

@@ -8,8 +8,8 @@ import retrofit2.http.Query
 
 interface TmdbApi {
 
-    @GET("movie/popular")
-    suspend fun getPopularMovies(
+    @GET("movie/upcoming")
+    suspend fun getUpcoming(
         @Query("page") page: Int = 1
     ): ApiResponse<Movie>
 }

@@ -5,13 +5,13 @@ An mobile application that consumes themoviedb api for study purposes.
 - [x] buildSrc
 - [x] Room Setup
 - [x] Hilt Setup
-- [x] Retrofit Setup
+- [x] Retrofit Setup  
+- [x] Paging3 + Remote Mediator
 - [x] Home Screen with Movie List
 - [ ] Movie Detail Screen
 - [ ] Movie Search Screen
 - [ ] Testing
 - [ ] Github Actions for CI/CD
-- [ ] Theming  
 - [ ] Modularization
 
 ## Built With 🛠
@@ -44,6 +44,8 @@ object ApiKey {
 - Inspiration from: https://www.behance.net/gallery/124917609/NETFLIX-UXUI-Redesign/modules/709576847
 - Material Theme Builder: https://material-foundation.github.io/material-theme-builder/#/custom
 
+## Known Issues
+- Bug in pagination
 
 ## License 👮‍♂️
 ```

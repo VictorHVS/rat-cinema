@@ -4,16 +4,15 @@ import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -41,20 +40,61 @@ fun MovieList(
     movies: LazyPagingItems<Movie>,
     navController: NavHostController
 ) {
-    LazyColumn(
-        contentPadding = PaddingValues(all = SMALL_PADDING),
-        verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
-    ) {
-        items(
-            items = movies,
-            key = { movie ->
-                movie.id
-            }
-        ) { hero ->
-            hero?.let {
-                MovieItem(movie = it, navController = navController)
+    val result = handlePagingResult(movies = movies)
+
+    if (result) {
+        LazyColumn(
+            contentPadding = PaddingValues(all = SMALL_PADDING),
+            verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
+        ) {
+            items(
+                items = movies,
+                key = { movie ->
+                    movie.id
+                }
+            ) { movie ->
+                movie?.let {
+                    MovieItem(movie = it, navController = navController)
+                }
             }
         }
+    }
+}
+
+@Composable
+fun handlePagingResult(
+    movies: LazyPagingItems<Movie>
+): Boolean {
+    movies.apply {
+        val error = when {
+            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+            else -> null
+        }
+
+        return when {
+            loadState.refresh is LoadState.Loading -> {
+                LoadingIndeterminate()
+                false
+            }
+            error != null -> {
+                EmptyScreen(error = error)
+                false
+            }
+            else -> true
+        }
+    }
+}
+
+@Composable
+fun LoadingIndeterminate() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        CircularProgressIndicator()
     }
 }
 
@@ -102,7 +142,7 @@ fun MovieItem(
                     .padding(all = MEDIUM_PADDING)
             ) {
                 Text(
-                    text = movie.title,
+                    text = movie.title ?: "",
                     color = Color.White,
                     fontSize = MaterialTheme.typography.h5.fontSize,
                     fontWeight = FontWeight.Bold,
@@ -110,7 +150,7 @@ fun MovieItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = movie.overview,
+                    text = movie.overview ?: "",
                     color = Color.White.copy(alpha = ContentAlpha.medium),
                     fontSize = MaterialTheme.typography.subtitle1.fontSize,
                     maxLines = 3,
@@ -120,9 +160,8 @@ fun MovieItem(
                     modifier = Modifier.padding(top = SMALL_PADDING),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    val voteAverage = movie.voteAverage.toFloat() / 2
                     RatingBar(
-                        value = voteAverage,
+                        value = movie.display5StarsRating(),
                         onValueChange = {},
                         onRatingChanged = {},
                         isIndicator = true,
@@ -133,7 +172,7 @@ fun MovieItem(
                         modifier = Modifier.padding(end = SMALL_PADDING)
                     )
                     Text(
-                        text = "($voteAverage)",
+                        text = "(${movie.voteCount} votes)",
                         textAlign = TextAlign.Center,
                         color = Color.White.copy(alpha = ContentAlpha.medium)
                     )
@@ -156,12 +195,12 @@ fun MovieItemPreview() {
             originalLanguage = "en",
             originalTitle = "Spider-Man: No Way Home",
             overview = "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
-            popularity = 7517.432,
+            popularity = 7517.432f,
             posterPath = "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
             releaseDate = "2021-12-15",
             title = "Spider-Man: No Way Home",
             video = false,
-            voteAverage = 8.3,
+            voteAverage = 8.3f,
             voteCount = 8460
         ),
         navController = rememberNavController()
@@ -181,12 +220,12 @@ fun MovieItemDarkPreview() {
             originalLanguage = "en",
             originalTitle = "Spider-Man: No Way Home",
             overview = "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
-            popularity = 7517.432,
+            popularity = 7517.432f,
             posterPath = "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
             releaseDate = "2021-12-15",
             title = "Spider-Man: No Way Home",
             video = false,
-            voteAverage = 8.3,
+            voteAverage = 8.3f,
             voteCount = 8460
         ),
         navController = rememberNavController()

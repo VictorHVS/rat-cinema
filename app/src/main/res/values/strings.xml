@@ -2,4 +2,5 @@
     <string name="app_name">RatCinema</string>
     <string name="search_icon">Search Icon</string>
     <string name="movie_image">Movie Poster</string>
+    <string name="network_error_icon">Network Error Icon</string>
 </resources>
