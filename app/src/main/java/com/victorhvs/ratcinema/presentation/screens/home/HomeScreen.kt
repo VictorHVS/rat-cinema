@@ -24,6 +24,9 @@ fun HomeScreen(
             HomeTopBar(
                 onSearchClicked = {
 
+                },
+                onProfileClicked = {
+
                 }
             )
         },
