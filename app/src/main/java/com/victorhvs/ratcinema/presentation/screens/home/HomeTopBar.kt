@@ -2,7 +2,6 @@ package com.victorhvs.ratcinema.presentation.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -21,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.victorhvs.ratcinema.R
-import com.victorhvs.ratcinema.ui.theme.EXTRA_SMALL_PADDING
 import com.victorhvs.ratcinema.util.Constants.PRAVATAR_URL
 
 @Composable
@@ -39,8 +37,7 @@ fun HomeTopBar(onSearchClicked: () -> Unit, onProfileClicked: () -> Unit) {
                 )
             }
             IconButton(
-                onClick = onProfileClicked,
-//                modifier = Modifier.padding(end = EXTRA_SMALL_PADDING)
+                onClick = onProfileClicked
             ) {
                 val painter = rememberImagePainter(data = PRAVATAR_URL) {
                     placeholder(R.drawable.ic_baseline_person_24)
@@ -63,5 +60,8 @@ fun HomeTopBar(onSearchClicked: () -> Unit, onProfileClicked: () -> Unit) {
 @Composable
 @Preview
 fun HomeTopBarPreview() {
-    HomeTopBar({}, {})
+    HomeTopBar(
+        onSearchClicked = {},
+        onProfileClicked = {}
+    )
 }
