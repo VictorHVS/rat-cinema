@@ -8,7 +8,7 @@ An mobile application that consumes themoviedb api for study purposes.
 - [x] Retrofit Setup  
 - [x] Paging3 + Remote Mediator
 - [x] Home Screen with Movie List
-- [ ] Movie Detail Screen
+- [x] Movie Detail Screen
 - [ ] Movie Search Screen
 - [ ] Testing
 - [ ] Github Actions for CI/CD
