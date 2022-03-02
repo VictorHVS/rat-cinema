@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.victorhvs.ratcinema.data.local.RatCinemaDatabase
+import com.victorhvs.ratcinema.data.repository.LocalDataSourceImpl
+import com.victorhvs.ratcinema.domain.repository.LocalDataSource
 import com.victorhvs.ratcinema.util.Constants.RATCINEMA_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -29,4 +31,10 @@ object DatabaseModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        database: RatCinemaDatabase
+    ) : LocalDataSource = LocalDataSourceImpl(database)
 }

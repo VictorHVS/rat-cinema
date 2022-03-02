@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
+import com.victorhvs.ratcinema.presentation.screens.details.DetailsScreen
 import com.victorhvs.ratcinema.presentation.screens.home.HomeScreen
 import com.victorhvs.ratcinema.presentation.screens.search.SearchScreen
 import com.victorhvs.ratcinema.util.Constants.DETAILS_ARGUMENT_KEY
@@ -31,7 +32,7 @@ fun SetupNavGraph(navController: NavHostController) {
                 type = NavType.IntType
             })
         ) {
-
+            DetailsScreen(navController = navController)
         }
         composable(route = Screen.Search.route) {
             SearchScreen(navController = navController)
