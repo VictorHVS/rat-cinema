@@ -1,10 +1,9 @@
 package com.victorhvs.ratcinema.presentation.common
 
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,7 +11,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -106,8 +104,8 @@ fun MovieItem(
 ) {
     val painter =
         rememberImagePainter(data = "https://image.tmdb.org/t/p/w780${movie.backdropPath}") {
-            placeholder(R.drawable.ic_placeholder)
-            error(R.drawable.ic_placeholder)
+            placeholder(R.drawable.ic_rat_cinema_icon)
+            error(R.drawable.ic_rat_cinema_icon)
         }
 
     Box(
@@ -120,7 +118,7 @@ fun MovieItem(
     ) {
         Surface(shape = RoundedCornerShape(size = LARGE_PADDING)) {
             Image(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.background(Color.DarkGray).fillMaxSize(),
                 painter = painter,
                 contentDescription = stringResource(R.string.movie_image),
                 contentScale = ContentScale.Crop
