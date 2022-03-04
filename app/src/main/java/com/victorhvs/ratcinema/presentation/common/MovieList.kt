@@ -28,8 +28,11 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.gowtham.ratingbar.RatingBar
 import com.victorhvs.ratcinema.R
+import com.victorhvs.ratcinema.data.remote.ImageApi
+import com.victorhvs.ratcinema.data.remote.ImageSize
 import com.victorhvs.ratcinema.domain.model.Movie
 import com.victorhvs.ratcinema.navigation.Screen
+import com.victorhvs.ratcinema.presentation.screens.details.MovieRating
 import com.victorhvs.ratcinema.ui.theme.*
 
 @ExperimentalCoilApi
@@ -103,7 +106,7 @@ fun MovieItem(
     navController: NavHostController
 ) {
     val painter =
-        rememberImagePainter(data = "https://image.tmdb.org/t/p/w780${movie.backdropPath}") {
+        rememberImagePainter(data = ImageApi.getFullUrl(movie.backdropPath, ImageSize.W780)) {
             placeholder(R.drawable.ic_rat_cinema_icon)
             error(R.drawable.ic_rat_cinema_icon)
         }
@@ -154,27 +157,10 @@ fun MovieItem(
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
-                Row(
-                    modifier = Modifier.padding(top = SMALL_PADDING),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    RatingBar(
-                        value = movie.display5StarsRating(),
-                        onValueChange = {},
-                        onRatingChanged = {},
-                        isIndicator = true,
-                        numStars = 5,
-                        size = 12.dp,
-                        activeColor = ratingBarActive,
-                        inactiveColor = ratingBarInactive,
-                        modifier = Modifier.padding(end = SMALL_PADDING)
-                    )
-                    Text(
-                        text = "(${movie.voteCount} votes)",
-                        textAlign = TextAlign.Center,
-                        color = Color.White.copy(alpha = ContentAlpha.medium)
-                    )
-                }
+                MovieRating(
+                    stars = movie.display5StarsRating(),
+                    votes = movie.voteCount ?: 0
+                )
             }
         }
     }

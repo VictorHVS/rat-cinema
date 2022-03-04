@@ -12,7 +12,7 @@ import com.victorhvs.ratcinema.domain.model.MovieRemoteKeys
 import javax.inject.Inject
 
 @ExperimentalPagingApi
-class MovieRemoteMediator @Inject constructor(
+class MovieRemoteMediator(
     private val tmdbApi: TmdbApi,
     private val ratCinemaDatabase: RatCinemaDatabase
 ): RemoteMediator<Int, Movie>() {

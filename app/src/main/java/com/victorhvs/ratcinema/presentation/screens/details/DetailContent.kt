@@ -23,6 +23,8 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.gowtham.ratingbar.RatingBar
 import com.victorhvs.ratcinema.R
+import com.victorhvs.ratcinema.data.remote.ImageApi
+import com.victorhvs.ratcinema.data.remote.ImageSize
 import com.victorhvs.ratcinema.domain.model.Movie
 import com.victorhvs.ratcinema.ui.theme.SMALL_PADDING
 import com.victorhvs.ratcinema.ui.theme.ratingBarActive
@@ -41,7 +43,12 @@ fun DetailContent(
     ) {
         Box {
             Image(
-                painter = rememberImagePainter(data = "https://image.tmdb.org/t/p/w780${movie?.posterPath}"),
+                painter = rememberImagePainter(
+                    data = ImageApi.getFullUrl(
+                        movie?.posterPath,
+                        ImageSize.W780
+                    )
+                ),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -74,27 +81,10 @@ fun DetailContent(
                     .padding(top = 12.dp)
                     .fillMaxWidth()
             )
-            Row(
-                modifier = Modifier.padding(top = SMALL_PADDING),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                RatingBar(
-                    value = movie?.display5StarsRating() ?: 0f,
-                    onValueChange = {},
-                    onRatingChanged = {},
-                    isIndicator = true,
-                    numStars = 5,
-                    size = 12.dp,
-                    activeColor = ratingBarActive,
-                    inactiveColor = ratingBarInactive,
-                    modifier = Modifier.padding(end = SMALL_PADDING)
-                )
-                Text(
-                    text = "(${movie?.voteCount} votes)",
-                    textAlign = TextAlign.Center,
-                    color = Color.White.copy(alpha = ContentAlpha.medium)
-                )
-            }
+            MovieRating(
+                stars = movie?.display5StarsRating() ?: 0f,
+                votes = movie?.voteCount ?: 0
+            )
             Text(
                 movie?.releaseDate ?: "",
                 style = MaterialTheme.typography.caption.copy(color = Color.Gray),
@@ -116,6 +106,31 @@ fun DetailContent(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun MovieRating(stars: Float = 0f, votes: Int = 0) {
+    Row(
+        modifier = Modifier.padding(top = SMALL_PADDING),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        RatingBar(
+            value = stars,
+            onValueChange = {},
+            onRatingChanged = {},
+            isIndicator = true,
+            numStars = 5,
+            size = 12.dp,
+            activeColor = ratingBarActive,
+            inactiveColor = ratingBarInactive,
+            modifier = Modifier.padding(end = SMALL_PADDING)
+        )
+        Text(
+            text = "(${votes} votes)",
+            textAlign = TextAlign.Center,
+            color = Color.White.copy(alpha = ContentAlpha.medium)
+        )
     }
 }
 

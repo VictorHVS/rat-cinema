@@ -26,11 +26,13 @@ import androidx.paging.LoadState
 import com.victorhvs.ratcinema.R
 import com.victorhvs.ratcinema.ui.theme.NETWORK_ERROR_ICON_HEIGHT
 import com.victorhvs.ratcinema.ui.theme.SMALL_PADDING
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 @Composable
 fun EmptyScreen(error: LoadState.Error) {
     val message by remember {
-        mutableStateOf(parseErrorMessage(message = error.toString()))
+        mutableStateOf(parseErrorMessage(error = error))
     }
     val icon by remember {
         mutableStateOf(Icons.Filled.SignalWifiBad)
@@ -78,12 +80,12 @@ fun EmptyContent(alphaAnim: Float, icon: ImageVector, message: String) {
     }
 }
 
-fun parseErrorMessage(message: String): String {
-    return when {
-        message.contains("SocketTimeoutException") -> {
+fun parseErrorMessage(error: LoadState.Error): String {
+    return when (error.error) {
+        is SocketTimeoutException -> {
             "Server Unavailable."
         }
-        message.contains("UnknownHostException") -> {
+        is ConnectException -> {
             "Internet Unavailable."
         }
         else -> {
