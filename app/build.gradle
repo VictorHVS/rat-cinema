@@ -79,6 +79,7 @@ dependencies {
     kapt Hilt.compiler
 
     implementation Kotlinx.serialization
+    implementation Kotlinx.coroutinesCore
 
     implementation Retrofit.retrofit
     implementation Retrofit.okHttpLogging

@@ -12,4 +12,11 @@ interface TmdbApi {
     suspend fun getUpcoming(
         @Query("page") page: Int = 1
     ): ApiResponse<Movie>
+
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") query: String,
+        @Query("page") page: Int = 1
+    ): ApiResponse<Movie>
 }

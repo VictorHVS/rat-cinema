@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RatCinema</string>
     <string name="search_icon">Search Icon</string>
+    <string name="close_icon">Close Icon</string>
     <string name="movie_image">Movie Poster</string>
     <string name="network_error_icon">Network Error Icon</string>
     <string name="avatar_user">Avatar User</string>

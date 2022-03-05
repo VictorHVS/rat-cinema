@@ -10,7 +10,10 @@ import com.victorhvs.ratcinema.data.remote.TmdbApi
 import com.victorhvs.ratcinema.domain.model.Movie
 import com.victorhvs.ratcinema.domain.repository.RemoteDataSource
 import com.victorhvs.ratcinema.util.Constants.ITEMS_PER_PAGE
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 
 @ExperimentalPagingApi
 class RemoteDataSourceImpl(
@@ -31,4 +34,19 @@ class RemoteDataSourceImpl(
             pagingSourceFactory = pagingSourceFactory
         ).flow
     }
+
+    override suspend fun searchMovies(query: String): Flow<List<Movie>> {
+        return withContext(Dispatchers.IO) {
+            flow {
+                emit(tmdbApi.searchMovies(query = query).results)
+            }
+        }
+//        return Pager(
+//            config = PagingConfig(pageSize = 10),
+//            pagingSourceFactory = {
+//                SearchMovieSource(tmdbApi = tmdbApi, query = query)
+//            }
+//        ).flow
+    }
+
 }

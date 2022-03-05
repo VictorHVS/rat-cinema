@@ -1,34 +1,58 @@
 package com.victorhvs.ratcinema.presentation.screens.search
 
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
+import com.victorhvs.ratcinema.presentation.common.MovieItem
+import com.victorhvs.ratcinema.ui.theme.SMALL_PADDING
 
 @ExperimentalCoilApi
 @Composable
 fun SearchScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    searchViewModel: SearchViewModel = hiltViewModel()
 ) {
+
+    val searchQuery by searchViewModel.searchQuery
+    val movies = searchViewModel.searchedMovies.collectAsState()
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "Search Screen")
+            SearchTopBar(
+                text = searchQuery,
+                onTextChange = {
+                    searchViewModel.updateSearchQuery(query = it)
                 },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        navController.popBackStack()
-                    }) {
-                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Retornar")
-                    }
+                onSearchClicked = {
+                    searchViewModel.searchMovies(query = it)
+                },
+                onCloseClicked = {
+                    navController.popBackStack()
                 }
             )
         },
         content = {
-
+//            MovieList(
+//                movies = movies,
+//                navController = navController
+//            )
+            LazyColumn(
+                contentPadding = PaddingValues(all = SMALL_PADDING),
+                verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
+            ) {
+                items(movies.value) {
+                    MovieItem(movie = it, navController = navController)
+                }
+            }
         }
     )
 }

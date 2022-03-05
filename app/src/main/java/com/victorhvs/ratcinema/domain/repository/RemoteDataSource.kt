@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RemoteDataSource {
     fun getAllMovies(): Flow<PagingData<Movie>>
+    suspend fun searchMovies(query: String): Flow<List<Movie>>
 }

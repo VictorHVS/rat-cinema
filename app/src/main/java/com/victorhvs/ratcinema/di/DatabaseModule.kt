@@ -5,7 +5,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.victorhvs.ratcinema.data.local.RatCinemaDatabase
 import com.victorhvs.ratcinema.data.repository.LocalDataSourceImpl
+import com.victorhvs.ratcinema.data.repository.Repository
 import com.victorhvs.ratcinema.domain.repository.LocalDataSource
+import com.victorhvs.ratcinema.domain.repository.RemoteDataSource
 import com.victorhvs.ratcinema.util.Constants.RATCINEMA_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -36,5 +38,12 @@ object DatabaseModule {
     @Singleton
     fun provideLocalDataSource(
         database: RatCinemaDatabase
-    ) : LocalDataSource = LocalDataSourceImpl(database)
+    ): LocalDataSource = LocalDataSourceImpl(database)
+
+    @Provides
+    @Singleton
+    fun provideRepository(
+        local: LocalDataSource,
+        remote: RemoteDataSource
+    ): Repository = Repository(local, remote)
 }

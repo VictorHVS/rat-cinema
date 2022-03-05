@@ -9,7 +9,7 @@ An mobile application that consumes themoviedb api for study purposes.
 - [x] Paging3 + Remote Mediator
 - [x] Home Screen with Movie List
 - [x] Movie Detail Screen
-- [ ] Movie Search Screen
+- [x] Movie Search Screen
 - [ ] Testing
 - [ ] Github Actions for CI/CD
 - [ ] Modularization

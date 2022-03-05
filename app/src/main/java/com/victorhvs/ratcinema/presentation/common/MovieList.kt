@@ -15,10 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
@@ -26,14 +24,16 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.gowtham.ratingbar.RatingBar
 import com.victorhvs.ratcinema.R
 import com.victorhvs.ratcinema.data.remote.ImageApi
 import com.victorhvs.ratcinema.data.remote.ImageSize
 import com.victorhvs.ratcinema.domain.model.Movie
 import com.victorhvs.ratcinema.navigation.Screen
-import com.victorhvs.ratcinema.presentation.screens.details.MovieRating
-import com.victorhvs.ratcinema.ui.theme.*
+import com.victorhvs.ratcinema.presentation.components.MovieRating
+import com.victorhvs.ratcinema.ui.theme.LARGE_PADDING
+import com.victorhvs.ratcinema.ui.theme.MEDIUM_PADDING
+import com.victorhvs.ratcinema.ui.theme.MOVIE_ITEM_HEIGHT
+import com.victorhvs.ratcinema.ui.theme.SMALL_PADDING
 
 @ExperimentalCoilApi
 @Composable

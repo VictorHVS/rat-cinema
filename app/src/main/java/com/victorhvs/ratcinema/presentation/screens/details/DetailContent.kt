@@ -5,30 +5,29 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.gowtham.ratingbar.RatingBar
 import com.victorhvs.ratcinema.R
 import com.victorhvs.ratcinema.data.remote.ImageApi
 import com.victorhvs.ratcinema.data.remote.ImageSize
 import com.victorhvs.ratcinema.domain.model.Movie
+import com.victorhvs.ratcinema.presentation.components.MovieRating
 import com.victorhvs.ratcinema.ui.theme.SMALL_PADDING
-import com.victorhvs.ratcinema.ui.theme.ratingBarActive
-import com.victorhvs.ratcinema.ui.theme.ratingBarInactive
 
 @Composable
 fun DetailContent(
@@ -106,31 +105,6 @@ fun DetailContent(
                 )
             }
         }
-    }
-}
-
-@Composable
-fun MovieRating(stars: Float = 0f, votes: Int = 0) {
-    Row(
-        modifier = Modifier.padding(top = SMALL_PADDING),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        RatingBar(
-            value = stars,
-            onValueChange = {},
-            onRatingChanged = {},
-            isIndicator = true,
-            numStars = 5,
-            size = 12.dp,
-            activeColor = ratingBarActive,
-            inactiveColor = ratingBarInactive,
-            modifier = Modifier.padding(end = SMALL_PADDING)
-        )
-        Text(
-            text = "(${votes} votes)",
-            textAlign = TextAlign.Center,
-            color = Color.White.copy(alpha = ContentAlpha.medium)
-        )
     }
 }
 

@@ -11,5 +11,7 @@ object Constants {
     const val MOVIE_DATABASE_TABLE = "movie_table"
     const val MOVIE_REMOTE_KEYS_DATABASE_TABLE = "movie_remote_keys_table"
 
+
+
     const val ITEMS_PER_PAGE = 20
 }
