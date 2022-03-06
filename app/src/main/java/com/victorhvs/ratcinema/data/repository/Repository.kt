@@ -20,7 +20,7 @@ class Repository @Inject constructor(
         return local.getSelectedMovie(movieId = movieId)
     }
 
-    suspend fun searchMovies(query: String): Flow<List<Movie>> {
+    fun searchMovies(query: String): Flow<PagingData<Movie>> {
         return remote.searchMovies(query = query)
     }
 }

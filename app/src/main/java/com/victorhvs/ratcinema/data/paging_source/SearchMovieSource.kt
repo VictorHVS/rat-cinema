@@ -12,7 +12,7 @@ class SearchMovieSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
-            val apiResponse = tmdbApi.searchMovies(query = query)
+            val apiResponse = tmdbApi.searchMovies(query = query, page = params.key ?: 1)
             val movies = apiResponse.results
             if (movies.isNotEmpty()) {
                 LoadResult.Page(
@@ -28,7 +28,6 @@ class SearchMovieSource(
                 )
             }
         } catch (e: Exception) {
-            e.printStackTrace()
             LoadResult.Error(e)
         }
     }

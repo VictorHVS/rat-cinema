@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.victorhvs.ratcinema.data.local.RatCinemaDatabase
 import com.victorhvs.ratcinema.data.paging_source.MovieRemoteMediator
+import com.victorhvs.ratcinema.data.paging_source.SearchMovieSource
 import com.victorhvs.ratcinema.data.remote.TmdbApi
 import com.victorhvs.ratcinema.domain.model.Movie
 import com.victorhvs.ratcinema.domain.repository.RemoteDataSource
@@ -35,18 +36,18 @@ class RemoteDataSourceImpl(
         ).flow
     }
 
-    override suspend fun searchMovies(query: String): Flow<List<Movie>> {
-        return withContext(Dispatchers.IO) {
-            flow {
-                emit(tmdbApi.searchMovies(query = query).results)
-            }
-        }
-//        return Pager(
-//            config = PagingConfig(pageSize = 10),
-//            pagingSourceFactory = {
-//                SearchMovieSource(tmdbApi = tmdbApi, query = query)
+    override fun searchMovies(query: String): Flow<PagingData<Movie>> {
+//        return withContext(Dispatchers.IO) {
+//            flow {
+//                emit(tmdbApi.searchMovies(query = query).results)
 //            }
-//        ).flow
+//        }
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchMovieSource(tmdbApi = tmdbApi, query = query)
+            }
+        ).flow
     }
 
 }

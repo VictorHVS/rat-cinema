@@ -10,7 +10,6 @@ import com.victorhvs.ratcinema.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +21,7 @@ class SearchViewModel @Inject constructor(
     private val _searchQuery = mutableStateOf("")
     val searchQuery = _searchQuery
 
-    private val _searchedMovies = MutableStateFlow<List<Movie>>(emptyList())
+    private val _searchedMovies = MutableStateFlow<PagingData<Movie>>(PagingData.empty())
     val searchedMovies = _searchedMovies
 
     fun updateSearchQuery(query: String) {
@@ -31,7 +30,7 @@ class SearchViewModel @Inject constructor(
 
     fun searchMovies(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.searchMovies(query = query).collect {
+            repository.searchMovies(query = query).cachedIn(viewModelScope).collect {
                 _searchedMovies.value = it
             }
         }
