@@ -17,8 +17,8 @@ class SearchMovieSource(
             if (movies.isNotEmpty()) {
                 LoadResult.Page(
                     data = movies,
-                    prevKey = if (apiResponse.page == 1) 1 else apiResponse.page - 1,
-                    nextKey = apiResponse.page + 1
+                    prevKey = if (apiResponse.page == 1) null else apiResponse.page - 1,
+                    nextKey = if (apiResponse.totalPages == apiResponse.page) null else apiResponse.page + 1
                 )
             } else {
                 LoadResult.Page(

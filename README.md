@@ -10,7 +10,7 @@ An mobile application that consumes themoviedb api for study purposes.
 - [x] Home Screen with Movie List
 - [x] Movie Detail Screen
 - [x] Movie Search Screen
-- [ ] Testing
+- [x] Testing
 - [ ] Github Actions for CI/CD
 - [ ] Modularization
 

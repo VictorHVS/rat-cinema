@@ -80,6 +80,7 @@ dependencies {
 
     implementation Kotlinx.serialization
     implementation Kotlinx.coroutinesCore
+    implementation Kotlinx.coroutineAndroid
 
     implementation Retrofit.retrofit
     implementation Retrofit.okHttpLogging
@@ -90,6 +91,9 @@ dependencies {
     implementation RatingBar.ratingBar
 
     testImplementation Junit.junit4
+    testImplementation Kotlin.kotlinTest
+    testImplementation Kotlinx.coroutinesTest
+
     androidTestImplementation AndroidXTest.runner
     androidTestImplementation AndroidXTest.rules
     androidTestImplementation AndroidXTest.testExt
