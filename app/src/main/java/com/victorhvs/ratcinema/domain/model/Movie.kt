@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.victorhvs.ratcinema.util.Constants.MOVIE_DATABASE_TABLE
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.*
 
 @Serializable
 @Entity(tableName = MOVIE_DATABASE_TABLE)
@@ -23,6 +24,7 @@ data class Movie(
     @SerialName("video") val video: Boolean? = null,
     @SerialName("vote_average") val voteAverage: Float? = null,
     @SerialName("vote_count") val voteCount: Int? = null,
+    val updatedAt: Long = Date().time,
 ) {
     fun display5StarsRating(): Float = this.voteAverage?.div(2) ?: 0.0f
 }

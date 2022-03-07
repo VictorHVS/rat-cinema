@@ -2,7 +2,6 @@ package com.victorhvs.ratcinema.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.victorhvs.ratcinema.data.local.RatCinemaDatabase
 import com.victorhvs.ratcinema.data.repository.LocalDataSourceImpl
 import com.victorhvs.ratcinema.data.repository.Repository
@@ -30,7 +29,6 @@ object DatabaseModule {
             RatCinemaDatabase::class.java,
             RATCINEMA_DATABASE
         )
-            .fallbackToDestructiveMigration()
             .build()
     }
 

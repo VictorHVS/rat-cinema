@@ -10,7 +10,7 @@ import com.victorhvs.ratcinema.domain.model.Movie
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM movie_table ORDER BY id ASC")
+    @Query("SELECT * FROM movie_table order by updatedAt ASC")
     fun getAllMovies(): PagingSource<Int, Movie>
 
     @Query("SELECT * FROM movie_table WHERE id=:movieId")

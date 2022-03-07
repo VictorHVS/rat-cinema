@@ -44,9 +44,6 @@ object ApiKey {
 - Inspiration from: https://www.behance.net/gallery/124917609/NETFLIX-UXUI-Redesign/modules/709576847
 - Material Theme Builder: https://material-foundation.github.io/material-theme-builder/#/custom
 
-## Known Issues
-- Bug in pagination
-
 ## License 👮‍♂️
 ```
 Copyright 2022 The Android Open Source Project

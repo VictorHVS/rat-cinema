@@ -9,7 +9,6 @@ import com.victorhvs.ratcinema.data.local.RatCinemaDatabase
 import com.victorhvs.ratcinema.data.remote.TmdbApi
 import com.victorhvs.ratcinema.domain.model.Movie
 import com.victorhvs.ratcinema.domain.model.MovieRemoteKeys
-import javax.inject.Inject
 
 @ExperimentalPagingApi
 class MovieRemoteMediator(
@@ -53,7 +52,7 @@ class MovieRemoteMediator(
                         movieRemoteKeysDao.deleteAllRemoteKeys()
                     }
                     val prevPage = if (response.page == 1) null else response.page - 1
-                    val nextPage = response.page + 1
+                    val nextPage = if (response.totalPages == response.page) null else response.page + 1
                     val keys = response.results.map { movie ->
                         MovieRemoteKeys(
                             id = movie.id,
@@ -84,7 +83,11 @@ class MovieRemoteMediator(
     private suspend fun getRemoteKeyForFirstItem(
         state: PagingState<Int, Movie>
     ): MovieRemoteKeys? {
-        return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
+        return state
+            .pages
+            .firstOrNull { it.data.isNotEmpty() }
+            ?.data
+            ?.firstOrNull()
             ?.let { movie ->
                 movieRemoteKeysDao.getRemoteKeys(movieId = movie.id)
             }
@@ -93,7 +96,11 @@ class MovieRemoteMediator(
     private suspend fun getRemoteKeyForLastItem(
         state: PagingState<Int, Movie>
     ): MovieRemoteKeys? {
-        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
+        return state
+            .pages
+            .lastOrNull { it.data.isNotEmpty() }
+            ?.data
+            ?.lastOrNull()
             ?.let { movie ->
                 movieRemoteKeysDao.getRemoteKeys(movieId = movie.id)
             }
